@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Toimik.UrlNormalization</AssemblyName>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Authors>Nurhafiz</Authors>
+    <Version>0.1.0</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Company>Toimik</Company>
+    <Description>
+      URL normalizer to canonicalize (standardize) the text representation
+      of a URL to determine if differently-formatted URLs are identical.
+
+      Visit Project Site for documentation.
+    </Description>
+    <Copyright>nurhafiz@hotmail.sg</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/toimik/UrlNormalization</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/toimik/UrlNormalization.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>url-normalizer url-normalization url-canonicalization url-standardizer url-standardization url-comparer</PackageTags>
+    <Product>UrlNormalization</Product>
+  </PropertyGroup>
+</Project>
