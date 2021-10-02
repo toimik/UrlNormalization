@@ -1,3 +1,5 @@
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/toimik/UrlNormalization/CI)
+
 # Toimik.UrlNormalization
 
 .NET 5 C# [URL normalizer](https://en.wikipedia.org/wiki/URI_normalization).
