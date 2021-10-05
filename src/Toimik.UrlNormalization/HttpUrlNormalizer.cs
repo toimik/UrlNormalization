@@ -40,7 +40,7 @@ namespace Toimik.UrlNormalization
         };
 
         /// <summary>
-        /// Creates an instance of the <see cref="UrlNormalizer"/> class with optional
+        /// Creates an instance of the <see cref="HttpUrlNormalizer"/> class with optional
         /// configurations.
         /// </summary>
         /// <param name="isAdjacentSlashesCollapsed">
