@@ -39,7 +39,7 @@ of a URL to determine if differently-formatted URLs are identical.
   `http://example.com/default.asp` &#8594; `http://example.com/`  
   `http://example.com/a/index.html` &#8594; `http://example.com/a/`
 
-- Fragment can be removed (optional, via `isFragmentIgnored`)
+- Fragment can be removed (optional, via `isFragmentIgnored`)  
   `http://example.com/bar.html#section1` &#8594; `http://example.com/bar.html`
 
 - Scheme can be changed (optional, via `PreferredScheme`)  
