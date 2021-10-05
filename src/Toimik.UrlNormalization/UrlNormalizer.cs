@@ -28,7 +28,7 @@ namespace Toimik.UrlNormalization
         private static readonly Regex AdjacentSlashesRegex = new("/{2,}", RegexOptions.Compiled);
 
         /// <summary>
-        /// Creates an instance of the <see cref="UrlNormalizer"/> class with optional
+        /// Initializes a new instance of the <see cref="UrlNormalizer"/> class with optional
         /// configurations.
         /// </summary>
         /// <param name="isAdjacentSlashesCollapsed">
