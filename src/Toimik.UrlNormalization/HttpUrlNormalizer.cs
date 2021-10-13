@@ -303,7 +303,7 @@ namespace Toimik.UrlNormalization
                 }
                 else
                 {
-                    values = new SortedSet<string>();
+                    values = new();
                     keyToValues.Add(key, values);
                 }
 
