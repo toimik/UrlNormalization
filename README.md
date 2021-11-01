@@ -1,5 +1,5 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/toimik/UrlNormalization/CI)
-![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/nurhafiz/290ef684adc013ef633c637f8f227f57/raw/code-coverage.json)
+![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/nurhafiz/e5f4b0c6225c1f67a4ad6d231dcf3ec5/raw/UrlNormalization-coverage.json)
 
 # Toimik.UrlNormalization
 

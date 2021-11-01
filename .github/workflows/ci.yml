@@ -38,6 +38,6 @@ jobs:
         label: coverage
         color: brightgreen
         path: tests/Toimik.UrlNormalization.Tests/coverage.opencover.xml
-        gist-filename: code-coverage.json
-        gist-id: 290ef684adc013ef633c637f8f227f57
+        gist-filename: UrlNormalization-coverage.json
+        gist-id: e5f4b0c6225c1f67a4ad6d231dcf3ec5
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
