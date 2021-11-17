@@ -30,13 +30,13 @@ namespace Toimik.UrlNormalization
         public static readonly ISet<string> DefaultRemovableDirectoryIndexNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "index",
-            "default"
+            "default",
         };
 
         private static readonly ISet<string> Schemes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "http",
-            "https"
+            "https",
         };
 
         /// <summary>
