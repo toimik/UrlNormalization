@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Toimik.UrlNormalization</AssemblyName>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.1.1</PackageVersion>
     <Authors>Nurhafiz</Authors>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>Toimik</Company>
     <Description>
@@ -20,7 +20,7 @@
     <RepositoryUrl>https://github.com/toimik/UrlNormalization.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>url-normalizer url-normalization url-canonicalization url-standardizer url-standardization url-comparer</PackageTags>
-    <Product>UrlNormalization</Product>
+    <Product>Toimik.UrlNormalization</Product>
   </PropertyGroup>
 
   <ItemGroup>
