@@ -119,7 +119,7 @@ namespace Toimik.UrlNormalization
             }
             while (true);
 
-            scheme = url.Substring(0, schemeDelimiterIndex);
+            scheme = url[..schemeDelimiterIndex];
             url = url[(schemeDelimiterIndex + schemeDelimiter.Length)..];
 
             // Determine the authority, if any
@@ -132,7 +132,7 @@ namespace Toimik.UrlNormalization
             }
             else
             {
-                authority = url.Substring(0, slashIndex);
+                authority = url[..slashIndex];
                 url = url[slashIndex..];
             }
 

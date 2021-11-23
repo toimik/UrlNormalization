@@ -151,7 +151,7 @@ namespace Toimik.UrlNormalization
                 {
                     fragment = url[hashIndex..];
                     fragment = NormalizeFragment(fragment);
-                    url = url.Substring(0, hashIndex);
+                    url = url[..hashIndex];
                 }
             }
             else
@@ -171,7 +171,7 @@ namespace Toimik.UrlNormalization
                 }
 
                 query = NormalizeQuery(query);
-                url = url.Substring(0, questionMarkIndex);
+                url = url[..questionMarkIndex];
             }
 
             url = $"{url}{query}{fragment}";
@@ -239,11 +239,11 @@ namespace Toimik.UrlNormalization
                 var periodIndex = filename.LastIndexOf('.');
                 if (periodIndex != -1)
                 {
-                    var name = filename.Substring(0, periodIndex);
+                    var name = filename[..periodIndex];
                     if (RemovableDirectoryIndexNames.Contains(name))
                     {
                         // The existence of a slash indicates that a directory exists
-                        path = $"{path.Substring(0, slashIndex)}/";
+                        path = $"{path[..slashIndex]}/";
                     }
                 }
             }
@@ -274,7 +274,7 @@ namespace Toimik.UrlNormalization
                 }
                 else
                 {
-                    key = token.Substring(0, index + 1);
+                    key = token[..(index + 1)];
                     if (key.Equals("="))
                     {
                         // Browsers do not send a value if a key is empty
