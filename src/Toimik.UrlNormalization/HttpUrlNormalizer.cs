@@ -295,13 +295,8 @@ public class HttpUrlNormalizer : UrlNormalizer
                 value = token[(index + 1)..];
             }
 
-            SortedSet<string> values;
-            var hasKey = keyToValues.ContainsKey(key);
-            if (hasKey)
-            {
-                values = keyToValues[key];
-            }
-            else
+            keyToValues.TryGetValue(key, out SortedSet<string>? values);
+            if (values == null)
             {
                 values = new();
                 keyToValues.Add(key, values);
