@@ -3,7 +3,7 @@
 
 # Toimik.UrlNormalization
 
-.NET 6 C# [URL normalizer](https://en.wikipedia.org/wiki/URI_normalization).
+.NET 8 C# [URL normalizer](https://en.wikipedia.org/wiki/URI_normalization).
 
 ## Features
 
