@@ -55,7 +55,7 @@ public class HttpUrlNormalizer(
         "default",
     };
 
-    private static readonly ISet<string> Schemes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    private static readonly HashSet<string> Schemes = new(StringComparer.OrdinalIgnoreCase)
     {
         "http",
         "https",
