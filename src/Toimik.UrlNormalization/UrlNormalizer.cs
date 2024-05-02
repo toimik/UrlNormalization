@@ -96,10 +96,7 @@ public class UrlNormalizer(bool isAdjacentSlashesCollapsed = true)
             }
 
             tryCount++;
-            if (baseUrl == null)
-            {
-                throw new ArgumentNullException(nameof(baseUrl));
-            }
+            ArgumentNullException.ThrowIfNull(baseUrl);
 
             // Prefix the url with the base URL as it is determined that the former is relative. A
             // slash is added between them in case the url is not prefixed with one. Multiple
