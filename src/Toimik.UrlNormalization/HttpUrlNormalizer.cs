@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2021-2022 nurhafiz@hotmail.sg
+ * Copyright 2021-2024 nurhafiz@hotmail.sg
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,32 @@ using System.Collections.Generic;
 using System.Text;
 
 /// <inheritdoc/>
-/// <remarks>
-/// This is specific to URLs with a 'http' / 'https' scheme.
-/// </remarks>
-public class HttpUrlNormalizer : UrlNormalizer
+/// <remarks>This is specific to URLs with a 'http' / 'https' scheme.</remarks>
+/// <summary>
+/// Initializes a new instance of the <see cref="HttpUrlNormalizer"/> class with optional configurations.
+/// </summary>
+/// <param name="isAdjacentSlashesCollapsed">See <see cref="base.UrlNormalizer(bool, bool)"/>.</param>
+/// <param name="preferredScheme">
+/// If non <c>null</c>, the scheme is changed to this (either 'http' or 'https'). If <c>null</c>,
+/// the scheme is left as-is. The default is <c>null</c>.
+/// </param>
+/// <param name="isUserInfoIgnored">
+/// If <c>true</c>, user-info (username:[password]@) component is removed. The default is <c>true</c>.
+/// </param>
+/// <param name="removableDirectoryIndexNames">
+/// Case-insensitive names (e.g. index) that must exist in a URL's filename (e.g. index.html) to
+/// indicate that the filename must be removed from the URL. The default are <c>index</c> and
+/// <c>default</c> . Pass an empty set if inapplicable.
+/// </param>
+/// <param name="isFragmentIgnored">
+/// If <c>true</c>, the fragment component, if any, of a URL is removed. The default is <c>true</c>.
+/// </param>
+public class HttpUrlNormalizer(
+    bool isAdjacentSlashesCollapsed = true,
+    string? preferredScheme = null,
+    bool isUserInfoIgnored = true,
+    ISet<string>? removableDirectoryIndexNames = null,
+    bool isFragmentIgnored = true) : UrlNormalizer(isAdjacentSlashesCollapsed)
 {
     // This is public so that subclasses can use this if desired
     public static readonly ISet<string> DefaultRemovableDirectoryIndexNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -39,51 +61,13 @@ public class HttpUrlNormalizer : UrlNormalizer
         "https",
     };
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="HttpUrlNormalizer"/> class with optional
-    /// configurations.
-    /// </summary>
-    /// <param name="isAdjacentSlashesCollapsed">
-    /// See <see cref="base.UrlNormalizer(bool, bool)"/>.
-    /// </param>
-    /// <param name="preferredScheme">
-    /// If non <c>null</c>, the scheme is changed to this (either 'http' or 'https'). If
-    /// <c>null</c>, the scheme is left as-is. The default is <c>null</c>.
-    /// </param>
-    /// <param name="isUserInfoIgnored">
-    /// If <c>true</c>, user-info (username:[password]@) component is removed. The default is
-    /// <c>true</c>.
-    /// </param>
-    /// <param name="removableDirectoryIndexNames">
-    /// Case-insensitive names (e.g. index) that must exist in a URL's filename (e.g.
-    /// index.html) to indicate that the filename must be removed from the URL. The default are
-    /// <c>index</c> and <c>default</c> . Pass an empty set if inapplicable.
-    /// </param>
-    /// <param name="isFragmentIgnored">
-    /// If <c>true</c>, the fragment component, if any, of a URL is removed. The default is
-    /// <c>true</c>.
-    /// </param>
-    public HttpUrlNormalizer(
-        bool isAdjacentSlashesCollapsed = true,
-        string? preferredScheme = null,
-        bool isUserInfoIgnored = true,
-        ISet<string>? removableDirectoryIndexNames = null,
-        bool isFragmentIgnored = true)
-        : base(isAdjacentSlashesCollapsed)
-    {
-        PreferredScheme = preferredScheme;
-        IsUserInfoIgnored = isUserInfoIgnored;
-        RemovableDirectoryIndexNames = removableDirectoryIndexNames ?? DefaultRemovableDirectoryIndexNames;
-        IsFragmentIgnored = isFragmentIgnored;
-    }
+    public bool IsFragmentIgnored { get; } = isFragmentIgnored;
 
-    public bool IsFragmentIgnored { get; }
+    public bool IsUserInfoIgnored { get; } = isUserInfoIgnored;
 
-    public bool IsUserInfoIgnored { get; }
+    public string? PreferredScheme { get; } = preferredScheme;
 
-    public string? PreferredScheme { get; }
-
-    public ISet<string> RemovableDirectoryIndexNames { get; }
+    public ISet<string> RemovableDirectoryIndexNames { get; } = removableDirectoryIndexNames ?? DefaultRemovableDirectoryIndexNames;
 
     /// <inheritdoc/>
     /// <remarks>
@@ -96,10 +80,7 @@ public class HttpUrlNormalizer : UrlNormalizer
     /// </description>
     /// </item>
     /// <item>
-    /// <description>
-    /// Filename, if any, is replaced with '/' if its name is in
-    /// <see cref="RemovableDirectoryIndexNames"/>.
-    /// </description>
+    /// <description>Filename, if any, is replaced with '/' if its name is in <see cref="RemovableDirectoryIndexNames"/>.</description>
     /// </item>
     /// <item>
     /// <description>Path's percent encoded triplets, if any, are capitalized.</description>
@@ -121,8 +102,7 @@ public class HttpUrlNormalizer : UrlNormalizer
     /// </item>
     /// <item>
     /// <description>
-    /// Query string parameters, if any, are sorted alphabetically by keys, and for each key, by
-    /// value.
+    /// Query string parameters, if any, are sorted alphabetically by keys, and for each key, by value.
     /// </description>
     /// </item>
     /// <item>

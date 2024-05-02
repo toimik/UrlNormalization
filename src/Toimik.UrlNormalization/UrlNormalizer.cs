@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2021-2022 nurhafiz@hotmail.sg
+ * Copyright 2021-2024 nurhafiz@hotmail.sg
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,24 +23,18 @@ using System.Text.RegularExpressions;
 /// <summary>
 /// Represents a normalizer that standardizes different representations of an absolute URL.
 /// </summary>
-public class UrlNormalizer
+/// <remarks>
+/// Initializes a new instance of the <see cref="UrlNormalizer"/> class with optional configurations.
+/// </remarks>
+/// <param name="isAdjacentSlashesCollapsed">
+/// If <c>true</c>, occurrences of two or more adjacent slashes in a path is collapsed into one. The
+/// default is <c>true</c> .
+/// </param>
+public class UrlNormalizer(bool isAdjacentSlashesCollapsed = true)
 {
     private static readonly Regex AdjacentSlashesRegex = new("/{2,}", RegexOptions.Compiled);
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="UrlNormalizer"/> class with optional
-    /// configurations.
-    /// </summary>
-    /// <param name="isAdjacentSlashesCollapsed">
-    /// If <c>true</c>, occurrences of two or more adjacent slashes in a path is collapsed into
-    /// one. The default is <c>true</c> .
-    /// </param>
-    public UrlNormalizer(bool isAdjacentSlashesCollapsed = true)
-    {
-        IsAdjacentSlashesCollapsed = isAdjacentSlashesCollapsed;
-    }
-
-    public bool IsAdjacentSlashesCollapsed { get; }
+    public bool IsAdjacentSlashesCollapsed { get; } = isAdjacentSlashesCollapsed;
 
     /// <summary>
     /// Normalizes a URL.
@@ -52,8 +46,8 @@ public class UrlNormalizer
     /// <list type="bullet">
     /// <item>
     /// <description>
-    /// User info (username:password@) component, if any, is removed if
-    /// <paramref name="IsUserInfoIgnored"/> is <c>true</c>.
+    /// User info (username:password@) component, if any, is removed if <paramref
+    /// name="IsUserInfoIgnored"/> is <c>true</c>.
     /// </description>
     /// </item>
     /// <item>
@@ -61,28 +55,23 @@ public class UrlNormalizer
     /// </item>
     /// <item>
     /// <description>
-    /// Path, if any, with multiple adjacent slashes are replaced with '/' if
-    /// <see cref="IsAdjacentSlashesCollapsed"/> is <c>true</c>.
+    /// Path, if any, with multiple adjacent slashes are replaced with '/' if <see
+    /// cref="IsAdjacentSlashesCollapsed"/> is <c>true</c>.
     /// </description>
     /// </item>
     /// </list>
     /// </remarks>
-    /// <param name="url">
-    /// A relative or absolute URL.
-    /// </param>
+    /// <param name="url">A relative or absolute URL.</param>
     /// <param name="baseUrl">
-    /// The base URL to prefix <paramref name="url"/> with if the latter is relative. The
-    /// default is <c>null</c> .
+    /// The base URL to prefix <paramref name="url"/> with if the latter is relative. The default is
+    /// <c>null</c> .
     /// </param>
-    /// <returns>
-    /// A normalized representation of the parameter(s).
-    /// </returns>
+    /// <returns>A normalized representation of the parameter(s).</returns>
     /// <exception cref="UriFormatException">
     /// Thrown if scheme is unspecified, or authority is unspecified if scheme is FTP.
     /// </exception>
     /// <exception cref="ArgumentNullException">
-    /// Thrown if <paramref name="url"/> does not have a scheme and <paramref name="baseUrl"/>
-    /// is <c>null</c>.
+    /// Thrown if <paramref name="url"/> does not have a scheme and <paramref name="baseUrl"/> is <c>null</c>.
     /// </exception>
     public virtual string Normalize(string url, string? baseUrl = null)
     {
@@ -112,8 +101,8 @@ public class UrlNormalizer
                 throw new ArgumentNullException(nameof(baseUrl));
             }
 
-            // Prefix the url with the base URL as it is determined that the former is relative.
-            // A slash is added between them in case the url is not prefixed with one. Multiple
+            // Prefix the url with the base URL as it is determined that the former is relative. A
+            // slash is added between them in case the url is not prefixed with one. Multiple
             // slashes are automatically removed down the line.
             url = $"{baseUrl}/{url}";
         }
@@ -188,8 +177,8 @@ public class UrlNormalizer
                     i++;
                     if (i == text.Length)
                     {
-                        // As the encoding is at the end of the URL and is malformed, the value
-                        // is auto decoded by Uri class
+                        // As the encoding is at the end of the URL and is malformed, the value is
+                        // auto decoded by Uri class
                         break;
                     }
 
