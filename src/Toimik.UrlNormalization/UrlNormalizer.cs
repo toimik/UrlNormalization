@@ -30,9 +30,9 @@ using System.Text.RegularExpressions;
 /// If <c>true</c>, occurrences of two or more adjacent slashes in a path is collapsed into one. The
 /// default is <c>true</c> .
 /// </param>
-public class UrlNormalizer(bool isAdjacentSlashesCollapsed = true)
+public partial class UrlNormalizer(bool isAdjacentSlashesCollapsed = true)
 {
-    private static readonly Regex AdjacentSlashesRegex = new("/{2,}", RegexOptions.Compiled);
+    private static readonly Regex AdjacentSlashesRegex = AtLeastTwoCharactersRegex();
 
     public bool IsAdjacentSlashesCollapsed { get; } = isAdjacentSlashesCollapsed;
 
@@ -188,4 +188,7 @@ public class UrlNormalizer(bool isAdjacentSlashesCollapsed = true)
         text = builder.ToString();
         return text;
     }
+
+    [GeneratedRegex("/{2,}", RegexOptions.Compiled)]
+    private static partial Regex AtLeastTwoCharactersRegex();
 }
