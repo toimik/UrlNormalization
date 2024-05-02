@@ -278,7 +278,7 @@ public class HttpUrlNormalizer(
             keyToValues.TryGetValue(key, out SortedSet<string>? values);
             if (values == null)
             {
-                values = new();
+                values = [];
                 keyToValues.Add(key, values);
             }
 
